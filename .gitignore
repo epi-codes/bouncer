@@ -241,3 +241,6 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/node,emacs,linux,macos,windows,sublimetext,code,visualstudiocode
+
+config/*.json
+!config/*.example.json

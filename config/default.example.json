@@ -1,0 +1,8 @@
+{
+  "webapp": {
+    "port": 3000
+  },
+  "discord": {
+    "token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  }
+}

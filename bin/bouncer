@@ -1,0 +1,29 @@
+#!/usr/bin/env node
+
+const debug = require('debug')('bouncer:init');
+const http = require('http');
+
+const discordbot = require('../src/discordbot');
+const webapp = require('../src/webapp');
+
+const config = require('../config/default.json');
+
+
+discordbot.login(config.discord.token)
+.then(() => debug(`Discord bot logged in as ${discordbot.user.tag}.`))
+.catch((err) => {
+  console.error('Discord bot failed to start.');
+  console.error(err);
+  process.exit(1);
+});
+
+
+webapp.set('port', config.webapp.port);
+var webserver = http.createServer(webapp);
+webserver.listen(config.webapp.port);
+webserver.on('listening', () => debug(`Web app listening on port ${webserver.address().port}.`));
+webserver.on('error', (err) => {
+  console.error('Web app failed to start.');
+  console.error(err);
+  process.exit(1);
+});
