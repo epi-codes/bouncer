@@ -3,15 +3,14 @@
 const debug = require('debug')('bouncer:init');
 const http = require('http');
 
-const FlowAdapter = require('../src/flow-adapter');
-let discordbot = require('../src/discordbot');
-let webapp = require('../src/webapp');
-
 const config = require('../config/default.json');
+
+const FlowAdapter = require('../src/flow-adapter');
+let discordbot = require('../src/discordbot')(config);
+let webapp = require('../src/webapp')(config);
 
 const adapter = new FlowAdapter(webapp, discordbot, config);
 
-discordbot.locals.config = config;
 discordbot.login(config.discord.token)
 .then(() => debug(`Discord bot logged in as ${discordbot.user.tag}.`))
 .catch((err) => {
@@ -21,7 +20,6 @@ discordbot.login(config.discord.token)
 });
 
 
-webapp.locals.config = config;
 let webserver = http.createServer(webapp);
 webserver.listen(config.webapp.port);
 webserver.on('listening', () => debug(`Web app listening on port ${webserver.address().port}.`));

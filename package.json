@@ -7,11 +7,14 @@
     "watch": "nodemon npm run start"
   },
   "dependencies": {
+    "connect-redis": "^3.4.0",
     "cookie-parser": "~1.4.3",
     "crypto-random-string": "^1.0.0",
     "debug": "~2.6.9",
     "discord.js": "^11.4.2",
     "express": "~4.16.0",
+    "express-async-handler": "^1.1.4",
+    "express-session": "^1.15.6",
     "hbs": "~4.0.1",
     "helmet": "^3.14.0",
     "http-errors": "~1.6.2",

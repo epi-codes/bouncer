@@ -76,6 +76,21 @@ class FlowAdapter {
       );
     });
   }
+
+  getFlow(key) {
+    return new Promise((resolve, reject) => {
+      debug('get flow');
+
+      this.redis.get(
+        `flow:data:${key}`,
+        (err, reply) => {
+          if (err) return reject(err);
+
+          resolve(reply);
+        }
+      );
+    });
+  }
 }
 
 module.exports = FlowAdapter;

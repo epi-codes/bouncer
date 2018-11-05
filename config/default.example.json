@@ -17,5 +17,6 @@
   },
   "flow": {
     "expire": 600
-  }
+  },
+  "secret": "a really long random string"
 }

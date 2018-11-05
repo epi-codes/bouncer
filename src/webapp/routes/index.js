@@ -1,9 +1,12 @@
-var express = require('express');
-var router = express.Router();
+const debug = require('debug')('bouncer:web');
 
-/* GET home page. */
+const { Router } = require('express');
+
+let router = Router();
+
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+  debug('index');
+  res.render('index');
 });
 
 module.exports = router;
