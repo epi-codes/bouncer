@@ -1,0 +1,139 @@
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol, ul {
+  list-style: none;
+}
+blockquote, q {
+  quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/*
+   bouncer
+ */
+
+html, body {
+  height: 100%;
+}
+
+*, *:before, *:after {
+  box-sizing: border-box;
+}
+
+html {
+
+}
+
+body {
+  background: #000 url(/bg.jpg) top left no-repeat;
+}
+
+a {
+  color: currentColor;
+}
+
+p {
+  margin-bottom: .5em;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+main {
+  position: absolute;
+  bottom: 10%;
+  left: 0;
+  right: 0;
+}
+
+main header {
+  background: linear-gradient(to right, #dc122a 80%, transparent);
+  width: 500px;
+  color: black;
+  text-transform: uppercase;
+  font-weight: bolder;
+  padding: 10px 0 10px 100px;
+  font-size: 28px;
+  font-family: sans-serif;
+}
+
+main section {
+  background: rgba(0, 0, 0, 0.7);
+  color: #dc122a;
+  padding: 20px 0 20px 150px;
+  height: 200px;
+  overflow: auto;
+  font-weight: bolder;
+  font-size: 22px;
+  font-family: sans-serif;
+}
+
+footer {
+  position: absolute;
+  bottom: .5em;
+  left: .5em;
+  right: 0;
+  color: #000;
+  font-style: italic;
+  font-size: 14px;
+  font-family: sans-serif;
+}
+
+pre {
+  font-family: monospace;
+  font-size: 14px;
+  font-weight: normal;
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    background-position-x: -145px;
+    background-size: 960px 540px;
+  }
+
+  main header,
+  main section {
+    padding-left: 10px;
+    width: 100%;
+  }
+}
