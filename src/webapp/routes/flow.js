@@ -16,6 +16,8 @@ router.get('/:key',
     if (!data)
       return next(createError(400, 'This link has expired. Please try again.'));
 
+    req.session.flow_key = req.params.key;
+
     passport.authenticate('azuread-openidconnect', {
       session: false,
       domain_hint: req.app.locals.config.azuread.tenantDomain

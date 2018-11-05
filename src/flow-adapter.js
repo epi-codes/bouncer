@@ -39,19 +39,19 @@ class FlowAdapter {
     });
   }
 
-  createFlow (guild_member) {
+  createFlow (member) {
     return new Promise((resolve, reject) => {
       debug('new flow');
 
       let key = cryptoRandomString(32);
       let data = {
         guild: {
-          id: guild_member.guild.id,
-          name: guild_member.guild.name
+          id: member.guild.id,
+          name: member.guild.name
         },
-        id: {
-          id: guild_member.id,
-          name: guild_member.displayName
+        member: {
+          id: member.id,
+          name: member.displayName
         }
       };
 
@@ -63,7 +63,7 @@ class FlowAdapter {
           if (err) return reject(err);
 
           this.redis.set(
-            `flow:active:${guild_member.id}:${guild_member.guild.id}`,
+            `flow:active:${member.id}:${member.guild.id}`,
             key,
             'EX', this.config.flow.expire,
             (err) => {
@@ -86,9 +86,37 @@ class FlowAdapter {
         (err, reply) => {
           if (err) return reject(err);
 
-          resolve(reply);
+          resolve(reply ? JSON.parse(reply) : reply);
         }
       );
+    });
+  }
+
+  completeFlow(key) {
+    return new Promise(async (resolve, reject) => {
+      try {
+        let data = await this.getFlow(key);
+        let guild = this.discordbot.guilds.get(data.guild.id);
+        let member = guild.members.get(data.member.id);
+
+        let role = guild.roles.find(item => item.name == '2022');
+        if (!role) throw Error();
+
+        await member.addRole(role, 'automated role assignation');
+
+        this.redis.del(
+          `flow:data:${key}`,
+          `flow:active:${member.id}:${member.guild.id}`,
+          (err) => {
+            if (err) return reject(err);
+
+            resolve();
+          }
+        );
+      }
+      catch (err) {
+        reject(err);
+      }
     });
   }
 }
