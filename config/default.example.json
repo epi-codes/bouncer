@@ -1,8 +1,21 @@
 {
   "webapp": {
-    "port": 3000
+    "port": 80,
+    "entrypoint": "https://example.com"
   },
   "discord": {
     "token": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  },
+  "redis": {
+    "url": "redis://127.0.0.1:6379/0",
+    "prefix": "bouncer:"
+  },
+  "azuread": {
+    "tenantID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
+    "tenantDomain": "example.com",
+    "clientID": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+  },
+  "flow": {
+    "expire": 600
   }
 }
